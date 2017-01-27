@@ -54,44 +54,62 @@
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var columnOne = 0;
-	var columnTwo = 0;
-	var columnThree = 0;
-	var columnFour = 0;
+	var setColumns = function setColumns(container, base) {
+	  var items = [].concat(_toConsumableArray(document.querySelectorAll('[data-grid-item]')));
+	  var col = 0;
+	  var columnHeight = 0;
+	  var rowWidth = 0;
 
-	(0, _jquery2.default)('[data-grid-container]').children().each(function (index, el) {
-	  if (window.innerWidth < 1024) {
-	    if (columnThree <= columnTwo) {
-	      (0, _jquery2.default)(el).css('top', columnThree + 'px');
-	      (0, _jquery2.default)(el).css('left', (0, _jquery2.default)(el).outerWidth() * 2 + 50 + 'px');
-	      columnThree += parseInt((0, _jquery2.default)(el).css('height'));
-	    } else if (columnTwo <= columnOne) {
-	      (0, _jquery2.default)(el).css('top', columnTwo + 'px');
-	      (0, _jquery2.default)(el).css('left', (0, _jquery2.default)(el).outerWidth() + 50 + 'px');
-	      columnTwo += parseInt((0, _jquery2.default)(el).css('height'));
-	    } else if (columnOne < columnTwo) {
-	      (0, _jquery2.default)(el).css('top', columnOne + 'px');
-	      columnOne += parseInt((0, _jquery2.default)(el).css('height'));
+	  var column = {};
+	  var row = {};
+
+	  for (var i = 0; i < base; i++) {
+	    column[i] = {
+	      height: columnHeight
+	    };
+	  }
+
+	  items.forEach(function (item) {
+	    if (col === base) {
+	      col = 0;
+	      rowWidth = 0;
 	    }
-	    return;
-	  }
 
-	  if (columnFour <= columnThree) {
-	    (0, _jquery2.default)(el).css('top', columnThree + 'px');
-	    (0, _jquery2.default)(el).css('left', (0, _jquery2.default)(el).outerWidth() * 3 + 50 + 'px');
-	    columnFour += parseInt((0, _jquery2.default)(el).css('height'));
-	  } else if (columnThree <= columnTwo) {
-	    (0, _jquery2.default)(el).css('top', columnThree + 'px');
-	    (0, _jquery2.default)(el).css('left', (0, _jquery2.default)(el).outerWidth() * 2 + 50 + 'px');
-	    columnThree += parseInt((0, _jquery2.default)(el).css('height'));
-	  } else if (columnTwo <= columnOne) {
-	    (0, _jquery2.default)(el).css('top', columnTwo + 'px');
-	    (0, _jquery2.default)(el).css('left', (0, _jquery2.default)(el).outerWidth() + 50 + 'px');
-	    columnTwo += parseInt((0, _jquery2.default)(el).css('height'));
-	  } else if (columnOne < columnTwo) {
-	    (0, _jquery2.default)(el).css('top', columnOne + 'px');
-	    columnOne += parseInt((0, _jquery2.default)(el).css('height'));
-	  }
+	    item.style.top = column[col].height + 'px';
+	    item.style.left = rowWidth + 'px';
+
+	    for (var prop in column[col]) {
+	      column[col][prop] += item.offsetHeight;
+	    }
+
+	    rowWidth += item.offsetWidth;
+	    col++;
+	  });
+	};
+
+	var getColumnCount = function getColumnCount() {
+	  var container = document.querySelector('[data-grid-container]');
+
+	  setColumns(container, function (width) {
+	    switch (true) {
+	      case width < 768:
+	        return 1;
+
+	      case width < 1024:
+	        return 3;
+
+	      default:
+	        return 4;
+	    }
+	  }((0, _jquery2.default)(window).width()));
+	};
+
+	getColumnCount();
+	(0, _jquery2.default)(window).on('resize', function () {
+	  return getColumnCount();
+	});
+	(0, _jquery2.default)(window).on('orientationchange', function () {
+	  return getColumnCount();
 	});
 
 	[].concat(_toConsumableArray(document.querySelectorAll('[data-sub-menu]'))).forEach(function (subMenu) {

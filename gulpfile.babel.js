@@ -6,6 +6,7 @@ import notifier from 'node-notifier';
 import server from 'gulp-server-livereload';
 import concat from 'gulp-concat';
 import sass from 'gulp-sass';
+import autoprefixer from 'gulp-autoprefixer';
 
 // error messages
 const notify = function (error) {
@@ -52,23 +53,22 @@ gulp.task('build', function() {
         ]
       }
     }))
-    .pipe(gulp.dest('./js'));
+    .pipe(gulp.dest('./'));
 });
 
 // compile the SASS files from main.scss
 gulp.task('sass', function () {
-  gulp.src('./styles/style.scss')
+  gulp.src('./scss/main.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(concat('main.css'))
-    .pipe(gulp.dest('./styles'));
+    .pipe(concat('style.css'))
+    .pipe(autoprefixer())
+    .pipe(gulp.dest('./'));
 });
 
-gulp.task('sass-second', function () {
-  gulp.src('./styles/second.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(concat('second.css'))
-    .pipe(gulp.dest('./styles'));
+// watch for changes in the SASS files
+gulp.task('watch', function () {
+  gulp.watch('./scss/**/*.scss', ['sass']);
 });
 
 // Run tasks in a specific order
-gulp.task('default', ['build', 'sass-second']);
+gulp.task('default', ['build', 'sass', 'watch']);

@@ -1,0 +1,43 @@
+.grid-container {
+  position: relative;
+  width: 100vw;
+  margin: 0 auto;
+  height: 100vh;
+  margin: 0 50px;
+
+  @media screen and (min-width: 1024px) {
+    max-width: 1060px;
+  }
+}
+
+.grid-panel {
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 5px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.grid-item {
+  position: relative;
+  display: block;
+  background: #00ffd4;
+  width: 230px;
+  height: 220px;
+  overflow: hidden;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.grid-item--height1 {
+  height: 360px;
+}
+
+.grid-item--height2 {
+  height: 300px;
+}
+
+.grid-item--height2 {
+  height: 150px;
+}

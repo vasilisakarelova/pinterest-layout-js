@@ -1,0 +1,47 @@
+.header {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0 50px;
+}
+
+.header-title {
+  position: relative;
+  display: block;
+  text-align: center;
+}
+
+.header-info {
+  position: relative;
+  display: block;
+  width: 100%;
+  column-count: 1;
+  text-align: justify;
+
+  @media screen and (min-width: 768px) {
+    column-count: 2;
+  }
+}
+
+.header-nav {
+  position: fixed;
+  left: 0;
+  background: #0e0eff;
+  padding: 0 50px;
+  display: none; //flex;
+  width: 100%;
+  z-index: 999;
+}
+
+.header-search-bar {
+  display: inline-block;
+  position: relative;
+  float: left;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
+
+.search-input {
+  position: relative;
+  display: block;
+}

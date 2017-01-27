@@ -1,0 +1,36 @@
+.menu {
+  position: relative;
+  display: inline-block;
+  float: left;
+}
+
+.menu-parent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 5.25rem;
+  float: left;
+  transform: translateZ(0);
+  list-style: none;
+  padding: 0;
+  
+  -ms-flex-pack: center;
+  -ms-flex-align: center;
+}
+
+.menu-item {
+  display: inline;
+  padding: 0 20px;
+}
+
+.menu-item-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  background: #fff200;
+  display: block;
+  position: absolute;
+  padding: 20px;
+  margin-top: 10px;
+  transition: all .3s ease-in;
+}
