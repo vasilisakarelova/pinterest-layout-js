@@ -7,7 +7,6 @@ const setColumns = (container, base) => {
   let rowWidth = 0;
 
   let column = {};
-  let row = {};
 
   for (let i = 0; i < base; i++) {
     column[i] = {
