@@ -61,7 +61,6 @@
 	  var rowWidth = 0;
 
 	  var column = {};
-	  var row = {};
 
 	  for (var i = 0; i < base; i++) {
 	    column[i] = {

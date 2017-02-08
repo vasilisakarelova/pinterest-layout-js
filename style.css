@@ -104,10 +104,10 @@ body {
 .grid-container {
   position: relative;
   width: 100vw;
-  max-width: 240px;
   margin: 0 auto;
   height: 100vh;
-  margin: 0 auto; }
+  margin: 0 auto;
+  max-width: 240px; }
   @media screen and (min-width: 768px) {
     .grid-container {
       max-width: 720px; } }
